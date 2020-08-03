@@ -19,3 +19,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Ignore this file
+multi-k8s-285102-5672d48bb81d.json
