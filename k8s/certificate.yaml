@@ -1,0 +1,22 @@
+apiVersion: certmanager.k8s.io/v1alpha2
+kind: Certificate
+metadata:
+  name: ronsonw-com-tls
+spec:
+  secretName: ronsonw-com
+  issuerRef:
+    name: letsencrypt-prod #This is the name of our issuer specified in issuer.yaml
+    kind: ClusterIssuer #This is the same kind specified in issuer.yaml
+  commonName: ronsonw.com #This is what will be shown in Common Name section in the certificate
+  #This is to tell the certificate is for these two domain names
+  dnsNames:
+    - ronsonw.com
+    - www.ronsonw.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        #This is for letsencrypt to verify that we have these two domain names. This is the show in that diagram between kubernetes and letsencrypt
+        domains:
+          - ronsonw.com
+          - www.ronsonw.com
