@@ -1,0 +1,15 @@
+apiVersion: certmanager.k8s.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: "ronson.wuniardy@gmail.com"
+    privateKeySecretRef:
+      name: letsencrypt-prod #I think this is when letsencrypt responds to kubernetes cluster and give a secret key. It will be stored here, but we don't need to use this.
+    solvers:
+      #This is to tell to get the http process to get certificate. It is shown in the diagram in the notes.
+      - http01:
+          ingress:
+            class: nginx
