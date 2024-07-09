@@ -16,3 +16,5 @@ kubectl set image deployments/server-deployment server=rwuniard/multi-server:$SH
 kubectl set image deployments/client-deployment client=rwuniard/multi-client:$SHA
 kubectl set image deployments/worker-deployment worker=rwuniard/multi-worker:$SHA
 
+# build for arm64
+#docker buildx build --platform linux/arm64 -t rwuniard/multi-client:latest_arm64 -f ./client/Dockerfile ./client --push
